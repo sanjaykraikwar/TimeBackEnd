@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+
 
 @Entity
 
@@ -16,10 +16,10 @@ public class User {
 	  @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long userId;
 
-	  @NotNull
+	 
 	private String userName;
 
-	  @NotNull
+	
 	private String password;
 	
 	private Boolean enabled;
@@ -29,7 +29,7 @@ public class User {
 	}
 
 	public void setUserId(Long userId) {
-		userId = userId;
+		this.userId = userId;
 	}
 
 	public String getUserName() {
@@ -37,7 +37,7 @@ public class User {
 	}
 
 	public void setUserName(String userName) {
-		userName = userName;
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -45,27 +45,27 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		password = password;
+		this.password = password;
 	}
 
-	public boolean isEnabled() {
+	public Boolean isEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(boolean enabled) {
-		enabled = enabled;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
-	public User(Long userId, String userName, String password, boolean enabled) {
-		super();
-		userId = userId;
-		userName = userName;
-		password = password;
-		enabled = enabled;
+	public User(Long userId, String userName, String password, Boolean enabled) {
+		
+		this.userId = userId;
+		this.userName = userName;
+		this.password = password;
+		this.enabled = enabled;
 	}
 
 	public User() {
-		super();
+		
 	}
 
 	@Override
@@ -78,7 +78,6 @@ public class User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (enabled ? 1231 : 1237);
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;

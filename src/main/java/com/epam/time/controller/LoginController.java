@@ -27,23 +27,25 @@ public class LoginController {
 		return userRepository.findByUserNameAndPassword("sanjay","kumar");
 	}
 	
-	@RequestMapping("/add") // Map ONLY GET Requests
-	public @ResponseBody String addNewUser (@RequestParam String name
-			, @RequestParam String password) {
+	 @CrossOrigin(origins = "http://localhost:4200")
+	@RequestMapping("/saveUser") // Map ONLY GET Requests
+	public @ResponseBody String addNewUser (String userName, String password) {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
 
-		User n = new User();
-		n.setUserName(name);
-		n.setPassword(password);
-		userRepository.save(n);
+		User user = new User();
+		user.setUserName(userName);
+		user.setPassword(password);
+		user.setEnabled(true);
+		userRepository.save(user);
 		return "Saved";
 	}
 	
-	@RequestMapping("/get") 
-	public @ResponseBody User getUserByNameAndPassword (String name, String password) {
+	 @CrossOrigin(origins = "http://localhost:4200")
+	@RequestMapping("/authUser") 
+	public @ResponseBody User getUserByNameAndPassword (String userName, String password) {
 		
-		List<User> users= userRepository.findByUserNameAndPassword(name,password);
+		List<User> users= userRepository.findByUserNameAndPassword(userName,password);
 		User user=null;
 		if(users.size()>0)
 			 user= users.get(0);
